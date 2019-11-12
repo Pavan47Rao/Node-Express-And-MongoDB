@@ -35,4 +35,4 @@ let initApp = require('./api/app');
 initApp(app);
 
 app.listen(port);
-console.log('Stickies RESTful API server started on: ' + port);
+console.log('ToDo RESTful API server started on: ' + port);

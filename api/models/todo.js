@@ -3,38 +3,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 /**
- * Mongoose schema for sticky object.
+ * Mongoose schema for todo object.
  * Everything in Mongoose starts with a Schema. 
  * Each schema maps to a MongoDB collection and 
  * defines the shape of the documents within that collection.
  */
-let StickySchema = new Schema({
+let ToDoSchema = new Schema({
     /**
-     * Title of the sticky.
+     * Title of the to do item.
      */
-    title: {
+    description: {
         type: String,
-        required: "title is required"
-    },
-    /**
-     * Sticky created date.
-     */
-    createdDate: {
-        type: Date,
-        default: Date.now
-    },
-    /**
-     * Sticky content.
-     */
-    content: {
-        type: String
-    },
-    /**
-     * Last modified date.
-     */
-    modifiedDate: {
-        type: Date,
-        default: Date.now
+        required: "description is required"
     }
 }, {
     /**
@@ -48,7 +28,7 @@ let StickySchema = new Schema({
 });
 // Duplicate the id field as mongoose returns _id field instead of id.
 // Virtuals are document properties that you can get and set but that do not get persisted to MongoDB.
-StickySchema.virtual('id').get(function(){
+ToDoSchema.virtual('id').get(function(){
     return this._id.toHexString();
 });
 
@@ -58,7 +38,7 @@ StickySchema.virtual('id').get(function(){
  * For example, if you pass a document to Express' res.json() function, virtuals will not be included by default.
  * To include virtuals in res.json(), you need to set the toJSON schema option to { virtuals: true }
  */
-StickySchema.set('toJSON', {
+ToDoSchema.set('toJSON', {
     virtuals: true
 });
 
@@ -68,4 +48,4 @@ StickySchema.set('toJSON', {
  * Models are responsible for creating and reading documents from the underlying MongoDB database.
  * When you call mongoose.model() on a schema, Mongoose compiles a model for you
  */
-module.exports = mongoose.model('stickies', StickySchema);
+module.exports = mongoose.model('todos', ToDoSchema);

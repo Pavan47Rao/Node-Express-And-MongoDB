@@ -1,93 +1,93 @@
 /**
- * Controller for sticky endpoints.
+ * Controller for todo endpoints.
  */
 
 'use strict';
-//import sticky service.
-const stickyService = require('../services/sticky-service');
+//import todo service.
+const toDoService = require('../services/todo-service');
 /**
- * Returns a list of stickies in JSON based on the
+ * Returns a list of to-dos in JSON based on the
  * search parameters.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
  */
 exports.list = function (request, response) {
-    const resolve = (stickies) => {
+    const resolve = (todos) => {
         response.status(200);
-        response.json(stickies);
+        response.json(todos);
     };
-    stickyService.search({})
+    toDoService.search({})
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
 
 /**
- * Creates a new sticky with the request JSON and
- * returns sticky JSON object.
+ * Creates a new todo with the request JSON and
+ * returns todo JSON object.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
  */
 exports.post = function (request, response) {
-    const newSticky = Object.assign({}, request.body);
-    const resolve = (sticky) => {
+    const newToDo = Object.assign({}, request.body);
+    const resolve = (todo) => {
         response.status(200);
-        response.json(sticky);
+        response.json(todo);
     };
-    stickyService.save(newSticky)
+    toDoService.save(newToDo)
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
 
 /**
- * Returns a sticky object in JSON.
+ * Returns a todo object in JSON.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
  */
 exports.get = function (request, response) {
-    const resolve = (sticky) => {
+    const resolve = (todo) => {
         response.status(200);
-        response.json(sticky);
+        response.json(todo);
     };
-    stickyService.get(request.params.stickyId)
+    toDoService.get(request.params.todoId)
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
 
 /**
- * Updates and returns a sticky object in JSON.
+ * Updates and returns a todo object in JSON.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
  */
 exports.put = function (request, response) {
-    const sticky = Object.assign({}, request.body);
-    const resolve = (sticky) => {
+    const todo = Object.assign({}, request.body);
+    const resolve = (todo) => {
         response.status(200);
-        response.json(sticky);
+        response.json(todo);
     };
-    sticky._id = request.params.stickyId;
-    stickyService.update(sticky)
+    todo._id = request.params.todoId;
+    toDoService.update(todo)
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
 
 /**
- * Deletes a sticky object.
+ * Deletes a todo object.
  *
  * @param {request} {HTTP request object}
  * @param {response} {HTTP response object}
  */
 exports.delete = function (request, response) {
-    const resolve = (sticky) => {
+    const resolve = (todo) => {
         response.status(200);
         response.json({
-            message: 'Sticky Successfully deleted'
+            message: 'ToDo Successfully deleted'
         });
     };
-    stickyService.delete(request.params.stickyId)
+    toDoService.delete(request.params.todoId)
         .then(resolve)
         .catch(renderErrorResponse(response));
 };
