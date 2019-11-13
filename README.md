@@ -9,7 +9,7 @@ A simple Nodejs/Express application for a simple todo app.
 3. Use MongoDB for the persistence layer.s.
 
 ## TECH USED:
-Express Framework, MongoDB
+Express Framework, MongoDB 
 
 ## Installation:
 1. Clone the repository using git clone https://github.com/neu-mis-info6150-fall-2019/assignment-8-PavanKalyanSrikantaRao.git
