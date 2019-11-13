@@ -44,7 +44,7 @@ exports.get = function (todoId) {
  */
 exports.update = function (todo) {
     todo.modified_date = new Date();
-    const promise = Todo.findOneAndUpdate({_id: todo._id}, todo).exec();
+    const promise = Todo.findOneAndUpdate({_id: todo._id}, todo, {new:true}).exec();
     return promise;
 };
 

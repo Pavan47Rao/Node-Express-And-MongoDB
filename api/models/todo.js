@@ -15,6 +15,13 @@ let ToDoSchema = new Schema({
     description: {
         type: String,
         required: "description is required"
+    },
+    title: {
+        type: String
+    },
+    completed: {
+        type: Boolean,
+        default: false
     }
 }, {
     /**
