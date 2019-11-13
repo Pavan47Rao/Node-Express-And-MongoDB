@@ -4,7 +4,7 @@
 
 'use strict';
 const mongoose = require('mongoose'),
-    Todo = mongoose.model('todos');
+    Todo = mongoose.model('todos'); 
 
 /**
  * Returns an array of todo object matching the search parameters.
